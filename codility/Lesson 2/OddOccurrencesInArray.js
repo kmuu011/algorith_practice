@@ -29,14 +29,18 @@
  * each element of array A is an integer within the range [1..1,000,000,000];
  * all but one of the values in A occur an even number of times.
  *
- * 한줄 요약: ArrayList<Number> 가 주어지면 홀수번 나온 수를 하나 뽑으라는 내용
+ * 한줄 요약: 주어진 ArrayList<Number>에 홀수번 들어있는 수가 있음 해당 수를 뽑아야함
+ * 홀수번 포함된 수는 여러개가 아니임. The array contains an odd number of elements
+ * an odd number 이기때문 several odd numbers 가 아니임.
  *
  * */
 
-const list = [1,2,3,1,2,3,4];
+const list = [1,2,3,1,4,2,3];
 
 /** 최고 효율
  * XOR 연산을 이용한 풀이 방식
+ * 문제처럼 홀수인 수가 단 하나일때 최고 효율
+ * 홀수인 수가 여러개인 경우에는 불가능한 로직
  * */
 function solution1(A) {
     let result = 0;
@@ -52,11 +56,11 @@ console.log(solution1(list))
 
 
 /** 평범한 방식
- *
+ * 문제와 달리 홀수인 수가 여러개일때도 사용가능한 로직
  * */
 function solution2(A) {
     const obj = A.reduce((acc, num) => {
-        acc[num] = acc[num] ? acc[num]+1 : 1;
+        acc[num] = acc[num] !== undefined ? acc[num]+1 : 1;
 
         return acc;
     }, {});
