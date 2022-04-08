@@ -29,7 +29,8 @@
  * each element of array A is an integer within the range [1..1,000,000,000];
  * all but one of the values in A occur an even number of times.
  *
- * 한줄 요약: 주어진 ArrayList<Number>에 홀수번 들어있는 수가 있음 해당 수를 뽑아야함
+ * 세줄 요약
+ * 주어진 ArrayList<Number>에 홀수번 들어있는 수가 있음 해당 수를 뽑아야함
  * 홀수번 포함된 수는 여러개가 아니임. The array contains an odd number of elements
  * an odd number 이기때문 several odd numbers 가 아니임.
  *
