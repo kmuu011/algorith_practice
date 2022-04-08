@@ -45,7 +45,7 @@
  * */
 
 const list = [1,2,3,4,5,6];
-const count = 6;
+const count = 5;
 
 /**
  * 내가 풀어본 풀이
