@@ -50,6 +50,7 @@ const clothes = [
     ["뿔테 안경", "eyeWear"],
 ];
 
+// 문제 접근 방식을 그지같이 해서 개삽질함
 function solution(clothes) {
     let caseCount = 1;
     const clothSet = {};
