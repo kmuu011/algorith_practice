@@ -78,6 +78,9 @@ function solution(progresses, speeds) {
 // 리스트상에 작업들의 완료까지 걸리는 일자를 days로 먼저 구한 다음
 // 다음 작업완료 일자와 비교하여 다음 완료일자가 더 클경우 
 // 카운트를 끊는 식으로 처리됨
+/**
+ * 하지만 아래방식은 속도가 위에 방식보다 많이느림
+ */
 function solution1(progresses, speeds) {
     let answer = [0];
     let days = progresses.map((progress, index) => Math.ceil((100 - progress) / speeds[index]));
