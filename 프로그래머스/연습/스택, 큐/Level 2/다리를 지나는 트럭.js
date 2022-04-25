@@ -39,12 +39,12 @@
  * 100                   100         [10,10,10,10,10,10,10,10,10,10]      110
  */
 
-const bridge_length = 100;
-const weight = 100;
-const truck_weights = [10];
-// const bridge_length = 2;
-// const weight = 10;
-// const truck_weights = [7,4,5,6];
+// const bridge_length = 100;
+// const weight = 100;
+// const truck_weights = [10];
+const bridge_length = 2;
+const weight = 10;
+const truck_weights = [7,4,5,6];
 
 // 22.04.24 완료
 // 그동안 알고리즘을 풀면서 문제 제대로 안읽기, 뇌절해버리기를 모두 하지 않고
@@ -86,4 +86,41 @@ function solution(bridge_length, weight, truck_weights) {
     return second;
 }
 
-console.log(solution(bridge_length, weight, truck_weights));
+// console.log(solution(bridge_length, weight, truck_weights));
+
+
+// 다른 사람의 풀이
+// qu.shift()로 qu의 맨앞을 뺌과 동시에 뺀값을 이용하는 부분이 인상깊음.
+// time+bridge_length로 해당 트럭이 빠져나갈 시간을 미리 예측해둠
+// 다음 트럭이 들어올 수 없는 하중에 도달하면 다리를 건너는 불필요한 과정을
+// 생략해 속도개선을 한듯.
+// 굉장히 빠름 좋은 방법인듯.
+function solution1(bridge_length, weight, truck_weights) {
+    // '다리'를 모방한 큐에 간단한 배열로 정리 : [트럭무게, 얘가 나갈 시간].
+    let time = 0, qu = [[0, 0]], weightOnBridge = 0;
+
+    // 대기 트럭, 다리를 건너는 트럭이 모두 0일 때 까지 다음 루프 반복
+    while (qu.length > 0 || truck_weights.length > 0) {
+        console.log('test');
+        // 1. 현재 시간이, 큐 맨 앞의 차의 '나갈 시간'과 같다면 내보내주고,
+        //    다리 위 트럭 무게 합에서 빼준다.
+        if (qu[0][1] === time) weightOnBridge -= qu.shift()[0];
+
+        if (weightOnBridge + truck_weights[0] <= weight) {
+            // 2. 다리 위 트럭 무게 합 + 대기중인 트럭의 첫 무게가 감당 무게 이하면
+            //    다리 위 트럭 무게 업데이트, 큐 뒤에 [트럭무게, 이 트럭이 나갈 시간] 추가.
+            weightOnBridge += truck_weights[0];
+            qu.push([truck_weights.shift(), time + bridge_length]);
+        } else {
+            // 3. 다음 트럭이 못올라오는 상황이면 얼른 큐의
+            //    첫번째 트럭이 빠지도록 그 시간으로 점프한다.
+            //    참고: if 밖에서 1 더하기 때문에 -1 해줌
+            if (qu[0]) time = qu[0][1] - 1;
+        }
+        // 시간 업데이트 해준다.
+        time++;
+    }
+    return time;
+}
+
+console.log(solution1(bridge_length, weight, truck_weights));
