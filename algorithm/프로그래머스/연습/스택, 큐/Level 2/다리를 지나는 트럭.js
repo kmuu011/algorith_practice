@@ -49,7 +49,6 @@ const truck_weights = [7,4,5,6];
 // 22.04.24 완료
 // 그동안 알고리즘을 풀면서 문제 제대로 안읽기, 뇌절해버리기를 모두 하지 않고
 // 정상적으로 풀은 결과 무난하게 완료함
-// 다른사람들의 소스를 보고 비교분석 하는 것은 너무 늦었으므로 다른날에 하는 부분으로 마무리.
 function solution(bridge_length, weight, truck_weights) {
     let second = 0;
 
